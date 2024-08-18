@@ -5,44 +5,53 @@ Sign Up
 {% endblock %}
 
 {% block content %}
-<section class="p-5 text-center pt-5 mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card shadow-sm bg-light">
-                <div class="card-body">
-                    <h2 class="card-title text-center my-4">Sign Up</h2>
-                    <form method="post" novalidate>
-                        {% csrf_token %}
+<section class="p-5 mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Sign Up</h2>
                         
-                        <!-- Display form non-field errors -->
-                        {% if form.non_field_errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for error in form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- Display form non-field errors -->
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.non_field_errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Form Fields -->
+                            {% for field in form %}
+                                <div class="form-group mb-3">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                    {{ field|add_class:"form-control" }}
+                                    {% if field.errors %}
+                                        <div class="invalid-feedback">
+                                            {% for error in field.errors %}
+                                                <p>{{ error }}</p>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
                             </div>
-                        {% endif %}
-                        
-                        <!-- Form Fields -->
-                        {% for field in form %}
-                            <div class="form-group mb-3">
-                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                                {{ field }}
-                                {% if field.errors %}
-                                    <div class="invalid-feedback">
-                                        {% for error in field.errors %}
-                                            {{ error }}
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                        
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+{% endblock %}
+
     </div>
 </section>
 {% endblock %}
