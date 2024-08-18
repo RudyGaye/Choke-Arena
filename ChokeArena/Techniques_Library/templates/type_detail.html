@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ type.name }}
+{% endblock %}
+
+{% block content %}
+<section class="p-5 text-center pt-5 mt-5">
+    <div class="container">
+        <!-- Heading for the type detail page -->
+        <h2 class="my-4">Type: {{ type.name }}</h2>
+        <p>{{ type.description }}</p> <!-- Description of the type -->
+
+        <!-- Heading for techniques within this type -->
+        <h3 class="my-4">Techniques in this Type</h3>
+        <div class="row">
+            <!-- Loop through all techniques related to this type -->
+            {% for technique in type.technique_set.all %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm bg-light">
+                    <div class="card-body">
+                        <!-- Technique name with link to detail page -->
+                        <h5 class="card-title">
+                            <a href="{% url 'technique_detail' technique.id %}">{{ technique.name }}</a>
+                        </h5>
+
+                        <!-- Display technique video if available -->
+                        {% if technique.video_url %}
+                        <iframe width="100%" height="200" src="{{ technique.video_url }}" frameborder="0" allowfullscreen></iframe>
+                        {% endif %}
+
+                        <!-- Display category and position of the technique -->
+                        <p class="card-text">Category: {{ technique.category.name }}</p>
+                        <p class="card-text">Position: {{ technique.position.name }}</p> <!-- Ensure 'position' has a 'name' attribute -->
+                        
+                        <!-- Button to view details of the technique -->
+                        <a href="{% url 'technique_detail' technique.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Message to display if there are no techniques for this type -->
+            <div class="col-12">
+                <p>No techniques found for this type.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

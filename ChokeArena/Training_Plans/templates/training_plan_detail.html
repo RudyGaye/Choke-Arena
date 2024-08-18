@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Training Plan Detail
+{% endblock %}
+
+{% block content %}
+<section class="p-5 text-center pt-5 mt-5">
+    <div class="container">
+        <h2 class="my-4">{{ training_plan.name }}</h2>
+        <p>{{ training_plan.description }}</p>
+        <h3>Techniques:</h3>
+        <ul>
+            {% for technique in training_plan.techniques.all %}
+            <li>{{ technique.name }}</li>
+            {% endfor %}
+        </ul>
+        
+        <!-- Add Follow Button -->
+        <form method="post" action="{% url 'follow_training_plan' training_plan.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Follow</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

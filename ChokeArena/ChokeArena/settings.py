@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-import os
 from dotenv import load_dotenv
 
 
@@ -59,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 # URL configurations
-ROOT_URLCONF = 'Choke_Arena.urls'
+ROOT_URLCONF = 'ChokeArena.urls'
 
 # Template configuration
 TEMPLATES = [
@@ -133,6 +132,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'Static',
 ]
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

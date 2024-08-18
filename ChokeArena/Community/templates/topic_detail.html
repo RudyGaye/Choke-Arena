@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="p-5 mt-4">
+    <div class="container">
+        <!-- Topic Title -->
+        <div class="text-center mb-5">
+            <h2 class="display-6">{{ topic.title }}</h2>
+            <p class="text-muted">Started by <strong>{{ topic.created_by }}</strong> on {{ topic.created_at }}</p>
+            
+            <!-- Edit/Delete Topic Buttons (Visible only to the creator or admin) -->
+            {% if user == topic.created_by or user.is_staff %}
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="{% url 'edit_topic' topic.id %}" class="btn btn-warning btn-sm">Edit Topic</a>
+                    <form method="post" action="{% url 'delete_topic' topic.id %}" onsubmit="return confirm('Are you sure you want to delete this topic?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete Topic</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Posts Section -->
+        <div class="mb-5">
+            {% for post in posts %}
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ post.created_by }}</strong>
+                                <span class="text-muted small"> - {{ post.created_at|date:"M d, Y H:i" }}</span>
+                            </div>
+                            <!-- Edit/Delete Post Buttons (Visible only to the creator or admin) -->
+                            {% if user == post.created_by or user.is_staff %}
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="postOptions{{ post.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="postOptions{{ post.id }}">
+                                        <li><a class="dropdown-item" href="{% url 'edit_post' post.id %}">Edit</a></li>
+                                        <li>
+                                            <form method="post" action="{% url 'delete_post' post.id %}" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                                {% csrf_token %}
+                                                <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <p>{{ post.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Reply Section -->
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body p-4">
+                <h3 class="card-title mb-4">Reply to this Topic</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group mb-4">
+                        {{ form.content|add_class:"form-control" }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">Post Reply</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

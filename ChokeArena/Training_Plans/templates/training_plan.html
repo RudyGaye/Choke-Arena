@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Training Plans
+{% endblock %}
+
+{% block content %}
+<section class="p-5 text-center pt-5 mt-5">
+    <div class="container">
+        <h2 class="my-4">Training Plans</h2>
+        <div class="row">
+            {% for plan in plans %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm bg-light h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plan.title }}</h5>
+                        <p class="card-text">{{ plan.description|truncatewords:20 }}</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Difficulty:</h6>
+                        <div class="mb-3">
+                            <!-- Display stars based on difficulty level -->
+                            {% for i in "12345" %}
+                                {% if i <= plan.difficulty %}
+                                    <i class="fas fa-star text-warning"></i>
+                                {% else %}
+                                    <i class="far fa-star text-warning"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{% url 'training_plan_detail' plan.id %}" class="btn btn-primary btn-sm">View Details</a>
+                            <span class="badge bg-secondary">{{ plan.techniques.count }} Techniques</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="p-5 mt-4">
+    <div class="container">
+        <h2>Edit Topic: {{ topic.title }}</h2>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_title" class="form-label">Title</label>
+                        {{ topic_form.title }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_content" class="form-label">Message</label>
+                        {{ post_form.content }}
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+  

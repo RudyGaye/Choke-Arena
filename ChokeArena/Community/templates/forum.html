@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="p-5 mt-4">
+    <div class="container">
+        <h2 class="mb-4">Forums</h2>
+
+        <div class="row">
+            {% for forum in forums %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">{{ forum.name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>{{ forum.description }}</p>
+                            <a href="{% url 'topic_list' forum.id %}" class="btn btn-primary">View Topics</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        No forums available at the moment.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

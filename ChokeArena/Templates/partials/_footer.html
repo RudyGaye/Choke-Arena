@@ -1,0 +1,66 @@
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start mt-5">
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase font-weight-bold">About Us</h5>
+        <p class="text-muted">
+          We are committed to providing the best forum experience. Join us to share knowledge, connect with others, and grow together.
+        </p>
+      </div>
+
+      <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase font-weight-bold">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'home' %}" class="text-dark">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'forum_list' %}" class="text-dark">Forums</a>
+          </li>
+          <li>
+            <a href="{% url 'topic_list' forum_id=1 %}" class="text-dark">Topics</a>
+          </li>
+          <li>
+            <a href="{% url 'contact' %}" class="text-dark">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase font-weight-bold">Support</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'help_center' %}" class="text-dark">Help Center</a>
+          </li>
+          <li>
+            <a href="{% url 'faq' %}" class="text-dark">FAQs</a>
+          </li>
+          <li>
+            <a href="{% url 'report_problem' %}" class="text-dark">Report a Problem</a>
+          </li>
+          <li>
+            <a href="{% url 'community_guidelines' %}" class="text-dark">Community Guidelines</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase font-weight-bold">Follow Us</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://twitter.com/YourTwitterHandle" class="text-dark"><i class="fab fa-twitter"></i> Twitter</a>
+          </li>
+          <li>
+            <a href="https://instagram.com/YourInstagramHandle" class="text-dark"><i class="fab fa-instagram"></i> Instagram</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center p-3 bg-dark text-white">
+    © 2024 Copyright:
+    <a class="text-white" href="{% url 'home' %}">YourWebsite.com</a>
+  </div>
+</footer>

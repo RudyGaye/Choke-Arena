@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Technique Detail
+{% endblock %}
+
+{% block content %}
+<section class="p-5 text-center pt-5 mt-5">
+    <div class="container">
+        <h2 class="my-4">{{ technique.name }}</h2>
+        <p>{{ technique.description }}</p>
+        <h3>Details:</h3>
+        <ul>
+            <li>Category: {{ technique.category }}</li>
+            <li>Type: {{ technique.type }}</li>
+            <li>Position: {{ technique.position }}</li>
+        </ul>
+        {% if technique.video_url %}
+        <iframe width="100%" height="400" src="{{ technique.video_url }}" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+        
+        <!-- Add Follow Button -->
+        <form method="post" action="{% url 'follow_technique' technique.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Follow</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

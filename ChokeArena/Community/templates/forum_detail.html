@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="p-5 mt-4">
+    <div class="container">
+        <h2 class="mb-4">{{ forum.name }}</h2>
+
+        <div class="row">
+            {% if topics %}
+                {% for topic in topics %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ topic.title }}</h5>
+                                <p class="card-text text-muted">Posted by {{ topic.author }} on {{ topic.created_at|date:"F j, Y" }}</p>
+                                <a href="{% url 'topic_detail' topic.id %}" class="btn btn-outline-primary">View Topic</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        No topics available in this forum.
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'new_topic' forum.id %}" class="btn btn-primary btn-lg">New Topic</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

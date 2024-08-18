@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<section class="p-5 mt-4">
+    <div class="container">
+        <!-- Title -->
+        <div class="text-center mb-5">
+            <h2 class="display-6">Create a New Topic in <span class="text-primary">{{ forum.name }}</span></h2>
+            <p class="text-muted">Share your thoughts and start a discussion.</p>
+        </div>
+        
+        <!-- Form Card -->
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-body p-5">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Title Input -->
+                    <div class="form-group mb-4">
+                        <label for="id_title" class="form-label fs-5">Topic Title</label>
+                        {{ form.title|add_class:"form-control form-control-lg" }}
+                        {% if form.title.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}
+                                    <div>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Message Input -->
+                    <div class="form-group mb-4">
+                        <label for="id_message" class="form-label fs-5">Message</label>
+                        {{ form.message|add_class:"form-control form-control-lg" }}
+                        <small class="form-text text-muted mt-1">Markdown is supported.</small>
+                        {% if form.message.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.message.errors %}
+                                    <div>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5 py-2">Create Topic</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

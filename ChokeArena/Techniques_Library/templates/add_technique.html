@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add Technique
+{% endblock %}
+
+{% block content %}
+<section class="p-5 text-center pt-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <h2 class="card-title text-center my-4">Add Technique</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="video_url" class="form-label">Video URL (Iframe)</label>
+                            {{ form.video_url }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            {{ form.type }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="position" class="form-label">Position</label>
+                            {{ form.position }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="association" class="form-label">Association</label>
+                            {{ form.association }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add Technique</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
