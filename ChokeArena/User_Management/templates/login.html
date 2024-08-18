@@ -5,7 +5,6 @@ Login
 {% endblock %}
 
 {% block content %}
-{% load custom_filters %}
 <section class="p-5 text-center pt-5 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -25,7 +24,7 @@ Login
                         {% endif %}
                         
                         <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
                             {{ form.email|add_class:"form-control" }}
                             <!-- Affichage des erreurs spécifiques au champ email -->
                             {% if form.email.errors %}
@@ -38,7 +37,7 @@ Login
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
                             {{ form.password|add_class:"form-control" }}
                             <!-- Affichage des erreurs spécifiques au champ password -->
                             {% if form.password.errors %}
@@ -61,5 +60,4 @@ Login
         </div>
     </div>
 </section>
-
 {% endblock %}

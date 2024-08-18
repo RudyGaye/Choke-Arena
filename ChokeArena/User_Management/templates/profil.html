@@ -5,7 +5,6 @@ Update Profile
 {% endblock %}
 
 {% block content %}
-{% load custom_filters %}
 
 <section>
     <div class="container my-5">
@@ -35,7 +34,7 @@ Update Profile
                             {% if form.non_field_errors %}
                                 <div class="alert alert-danger">
                                     {% for error in form.non_field_errors %}
-                                        {{ error }}
+                                        <p>{{ error }}</p>
                                     {% endfor %}
                                 </div>
                             {% endif %}
@@ -48,7 +47,7 @@ Update Profile
                                     {% if field.errors %}
                                         <div class="invalid-feedback d-block">
                                             {% for error in field.errors %}
-                                                {{ error }}
+                                                <p>{{ error }}</p>
                                             {% endfor %}
                                         </div>
                                     {% endif %}
@@ -63,5 +62,4 @@ Update Profile
         </div>
     </div>
 </section>
-
 {% endblock %}

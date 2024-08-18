@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load custom_filters %}
 
 {% block content %}
 <section class="p-5 mt-4">
@@ -19,7 +18,7 @@
                     <!-- Title Input -->
                     <div class="form-group mb-4">
                         <label for="id_title" class="form-label fs-5">Topic Title</label>
-                        {{ form.title|add_class:"form-control form-control-lg" }}
+                        {{ form.title }}
                         {% if form.title.errors %}
                             <div class="invalid-feedback">
                                 {% for error in form.title.errors %}
@@ -32,7 +31,7 @@
                     <!-- Message Input -->
                     <div class="form-group mb-4">
                         <label for="id_message" class="form-label fs-5">Message</label>
-                        {{ form.message|add_class:"form-control form-control-lg" }}
+                        {{ form.message }}
                         <small class="form-text text-muted mt-1">Markdown is supported.</small>
                         {% if form.message.errors %}
                             <div class="invalid-feedback">
