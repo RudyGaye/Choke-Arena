@@ -13,16 +13,13 @@
         <h5 class="text-uppercase font-weight-bold">Quick Links</h5>
         <ul class="list-unstyled">
           <li>
-            <a href="{% url 'home' %}" class="text-dark">Home</a>
+            <a href="{% url 'home_index' %}" class="text-dark">Home</a>
           </li>
           <li>
             <a href="{% url 'forum_list' %}" class="text-dark">Forums</a>
           </li>
           <li>
-            <a href="{% url 'topic_list' forum_id=1 %}" class="text-dark">Topics</a>
-          </li>
-          <li>
-            <a href="{% url 'contact' %}" class="text-dark">Contact Us</a>
+            <a href="#" class="text-dark">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -31,16 +28,16 @@
         <h5 class="text-uppercase font-weight-bold">Support</h5>
         <ul class="list-unstyled">
           <li>
-            <a href="{% url 'help_center' %}" class="text-dark">Help Center</a>
+            <a href="#" class="text-dark">Help Center</a>
           </li>
           <li>
-            <a href="{% url 'faq' %}" class="text-dark">FAQs</a>
+            <a href="#" class="text-dark">FAQs</a>
           </li>
           <li>
-            <a href="{% url 'report_problem' %}" class="text-dark">Report a Problem</a>
+            <a href="#" class="text-dark">Report a Problem</a>
           </li>
           <li>
-            <a href="{% url 'community_guidelines' %}" class="text-dark">Community Guidelines</a>
+            <a href="#" class="text-dark">Community Guidelines</a>
           </li>
         </ul>
       </div>
@@ -61,6 +58,6 @@
 
   <div class="text-center p-3 bg-dark text-white">
     © 2024 Copyright:
-    <a class="text-white" href="{% url 'home' %}">YourWebsite.com</a>
+    <a class="text-white" href="{% url 'home_index' %}">YourWebsite.com</a>
   </div>
 </footer>
