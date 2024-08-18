@@ -8,7 +8,7 @@ def forum_list(request):
     Display a list of all forums.
     """
     forums = Forum.objects.all()
-    return render(request, 'forum_list.html', {'forums': forums})
+    return render(request, 'forum.html', {'forums': forums})
 
 def topic_list(request, forum_id):
     """
@@ -18,11 +18,11 @@ def topic_list(request, forum_id):
     forum_id (int): The ID of the forum whose topics are to be displayed.
 
     Returns:
-    HttpResponse: Renders the 'topic_list.html' template with the forum and its topics.
+    HttpResponse: Renders the 'forum_detail.html' template with the forum and its topics.
     """
     forum = get_object_or_404(Forum, id=forum_id)
     topics = forum.topics.all()
-    return render(request, 'topic_list.html', {'forum': forum, 'topics': topics})
+    return render(request, 'forum_detail.html', {'forum': forum, 'topics': topics})
 
 def topic_detail(request, topic_id):
     """
