@@ -7,4 +7,6 @@ def add_class(field, css_class):
     """
     Add a CSS class to a form field widget.
     """
-    return field.as_widget(attrs={'class': css_class})
+    if hasattr(field, 'widget'):
+        return field.as_widget(attrs={'class': css_class})
+    return field
