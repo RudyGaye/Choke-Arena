@@ -25,8 +25,8 @@ Sign Up
                         
                         <!-- Form Fields -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="name">Name</label>
-                            {{ form.name|as_widget(attrs={'class': 'form-control'}) }}
+                            <label class="form-label" for="id_name">Name</label>
+                            <input type="text" name="name" id="id_name" class="form-control" value="{{ form.name.value|default_if_none:'' }}">
                             {% if form.name.errors %}
                                 <div class="text-danger">
                                     {% for error in form.name.errors %}
@@ -37,8 +37,8 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="surname">Surname</label>
-                            {{ form.surname|as_widget(attrs={'class': 'form-control'}) }}
+                            <label class="form-label" for="id_surname">Surname</label>
+                            <input type="text" name="surname" id="id_surname" class="form-control" value="{{ form.surname.value|default_if_none:'' }}">
                             {% if form.surname.errors %}
                                 <div class="text-danger">
                                     {% for error in form.surname.errors %}
@@ -49,8 +49,8 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="email">Email</label>
-                            {{ form.email|as_widget(attrs={'class': 'form-control'}) }}
+                            <label class="form-label" for="id_email">Email</label>
+                            <input type="email" name="email" id="id_email" class="form-control" value="{{ form.email.value|default_if_none:'' }}">
                             {% if form.email.errors %}
                                 <div class="text-danger">
                                     {% for error in form.email.errors %}
@@ -61,8 +61,8 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="password1">Password</label>
-                            {{ form.password1|as_widget(attrs={'class': 'form-control'}) }}
+                            <label class="form-label" for="id_password1">Password</label>
+                            <input type="password" name="password1" id="id_password1" class="form-control" value="{{ form.password1.value|default_if_none:'' }}">
                             {% if form.password1.errors %}
                                 <div class="text-danger">
                                     {% for error in form.password1.errors %}
@@ -73,8 +73,8 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="password2">Confirm Password</label>
-                            {{ form.password2|as_widget(attrs={'class': 'form-control'}) }}
+                            <label class="form-label" for="id_password2">Confirm Password</label>
+                            <input type="password" name="password2" id="id_password2" class="form-control" value="{{ form.password2.value|default_if_none:'' }}">
                             {% if form.password2.errors %}
                                 <div class="text-danger">
                                     {% for error in form.password2.errors %}
@@ -85,8 +85,12 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="level">Belt</label>
-                            {{ form.level|as_widget(attrs={'class': 'form-select'}) }}
+                            <label class="form-label" for="id_level">Belt</label>
+                            <select name="level" id="id_level" class="form-select">
+                                {% for choice in form.level.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if choice.0 == form.level.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>
                             {% if form.level.errors %}
                                 <div class="text-danger">
                                     {% for error in form.level.errors %}
@@ -97,8 +101,8 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="birth_date">Birth Date</label>
-                            {{ form.birth_date|as_widget(attrs={'class': 'form-control', 'type': 'date'}) }}
+                            <label class="form-label" for="id_birth_date">Birth Date</label>
+                            <input type="date" name="birth_date" id="id_birth_date" class="form-control" value="{{ form.birth_date.value|default_if_none:'' }}">
                             {% if form.birth_date.errors %}
                                 <div class="text-danger">
                                     {% for error in form.birth_date.errors %}
@@ -109,8 +113,12 @@ Sign Up
                         </div>
                         
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="sex">Sex</label>
-                            {{ form.sex|as_widget(attrs={'class': 'form-select'}) }}
+                            <label class="form-label" for="id_sex">Sex</label>
+                            <select name="sex" id="id_sex" class="form-select">
+                                {% for choice in form.sex.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if choice.0 == form.sex.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>
                             {% if form.sex.errors %}
                                 <div class="text-danger">
                                     {% for error in form.sex.errors %}
@@ -128,3 +136,4 @@ Sign Up
     </div>
 </section>
 {% endblock %}
+
