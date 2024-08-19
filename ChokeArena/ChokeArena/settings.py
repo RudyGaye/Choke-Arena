@@ -92,8 +92,7 @@ WSGI_APPLICATION = 'Choke_Arena.wsgi.application'
 
 # Database configuration
 DATABASES = {
-    'default': dj_database_url.parse(
-        DATABASE_URL,
+    'default':  dj_database_url.parse(os.getenv('DATABASE_URL'),
         conn_max_age=600,
         ssl_require=True 
     )
