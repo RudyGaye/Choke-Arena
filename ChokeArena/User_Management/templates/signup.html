@@ -85,8 +85,9 @@ Sign Up
                             </div>
 
                             <!-- Belt input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <select id="id_level" name="level" class="form-select">
+                            <div class="mb-4">
+                                <label class="visually-hidden" for="id_level">Belt</label>
+                                <select id="id_level" name="level" data-mdb-select-init class="select form-select">
                                     {% for choice in form.level.field.choices %}
                                         <option value="{{ choice.0 }}" {% if choice.0 == form.level.value %}selected{% endif %}>{{ choice.1 }}</option>
                                     {% endfor %}
@@ -115,8 +116,9 @@ Sign Up
                             </div>
 
                             <!-- Sex input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <select id="id_sex" name="sex" class="form-select">
+                            <div class="mb-4">
+                                <label class="visually-hidden" for="id_sex">Sex</label>
+                                <select id="id_sex" name="sex" data-mdb-select-init class="select form-select">
                                     {% for choice in form.sex.field.choices %}
                                         <option value="{{ choice.0 }}" {% if choice.0 == form.sex.value %}selected{% endif %}>{{ choice.1 }}</option>
                                     {% endfor %}
@@ -161,6 +163,7 @@ Sign Up
     </div>
 </section>
 {% endblock %}
+
 
 
 
