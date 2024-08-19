@@ -5,10 +5,9 @@ Sign Up
 {% endblock %}
 
 {% block content %}
-{% load custom_filters %}
-<section class="p-5 text-center pt-5 mt-5">
+<section class="p-5 text-center">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8 col-lg-6">
             <div class="card shadow-sm bg-light">
                 <div class="card-body">
                     <h2 class="card-title text-center my-4">Sign Up</h2>
@@ -18,87 +17,105 @@ Sign Up
                         <!-- Display form non-field errors -->
                         {% if form.non_field_errors %}
                             <div class="alert alert-danger" role="alert">
-                                {{ form.non_field_errors }}
+                                {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
                             </div>
                         {% endif %}
                         
                         <!-- Form Fields -->
-                        <div class="form-group mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            {{ form.name|add_class:"form-control" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="name">Name</label>
+                            {{ form.name|as_widget(attrs={'class': 'form-control'}) }}
                             {% if form.name.errors %}
                                 <div class="text-danger">
-                                    {{ form.name.errors }}
+                                    {% for error in form.name.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="surname" class="form-label">Surname</label>
-                            {{ form.surname|add_class:"form-control" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="surname">Surname</label>
+                            {{ form.surname|as_widget(attrs={'class': 'form-control'}) }}
                             {% if form.surname.errors %}
                                 <div class="text-danger">
-                                    {{ form.surname.errors }}
+                                    {% for error in form.surname.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            {{ form.email|add_class:"form-control" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email</label>
+                            {{ form.email|as_widget(attrs={'class': 'form-control'}) }}
                             {% if form.email.errors %}
                                 <div class="text-danger">
-                                    {{ form.email.errors }}
+                                    {% for error in form.email.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="password1" class="form-label">Password</label>
-                            {{ form.password1|add_class:"form-control" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password1">Password</label>
+                            {{ form.password1|as_widget(attrs={'class': 'form-control'}) }}
                             {% if form.password1.errors %}
                                 <div class="text-danger">
-                                    {{ form.password1.errors }}
+                                    {% for error in form.password1.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="password2" class="form-label">Confirm Password</label>
-                            {{ form.password2|add_class:"form-control" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="password2">Confirm Password</label>
+                            {{ form.password2|as_widget(attrs={'class': 'form-control'}) }}
                             {% if form.password2.errors %}
                                 <div class="text-danger">
-                                    {{ form.password2.errors }}
+                                    {% for error in form.password2.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="level" class="form-label">Belt</label>
-                            {{ form.level|add_class:"form-select" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="level">Belt</label>
+                            {{ form.level|as_widget(attrs={'class': 'form-select'}) }}
                             {% if form.level.errors %}
                                 <div class="text-danger">
-                                    {{ form.level.errors }}
+                                    {% for error in form.level.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="birth_date" class="form-label">Birth Date</label>
-                            {{ form.birth_date|add_class:"form-control" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="birth_date">Birth Date</label>
+                            {{ form.birth_date|as_widget(attrs={'class': 'form-control', 'type': 'date'}) }}
                             {% if form.birth_date.errors %}
                                 <div class="text-danger">
-                                    {{ form.birth_date.errors }}
+                                    {% for error in form.birth_date.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                         
-                        <div class="form-group mb-3">
-                            <label for="sex" class="form-label">Sex</label>
-                            {{ form.sex|add_class:"form-select" }}
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="sex">Sex</label>
+                            {{ form.sex|as_widget(attrs={'class': 'form-select'}) }}
                             {% if form.sex.errors %}
                                 <div class="text-danger">
-                                    {{ form.sex.errors }}
+                                    {% for error in form.sex.errors %}
+                                        {{ error }}
+                                    {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
@@ -110,5 +127,4 @@ Sign Up
         </div>
     </div>
 </section>
-
 {% endblock %}
