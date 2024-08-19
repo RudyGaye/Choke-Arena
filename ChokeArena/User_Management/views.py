@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm,get_user_model
+from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm,
 from .models import CustomUser
 from Techniques_Library.models import Technique
 from Training_Plans.models import TrainingPlan
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
