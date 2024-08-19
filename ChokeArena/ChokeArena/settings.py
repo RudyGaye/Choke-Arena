@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
+
 
 
 load_dotenv()
@@ -90,14 +92,7 @@ WSGI_APPLICATION = 'Choke_Arena.wsgi.application'
 
 # Database configuration
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DJANGO_DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DJANGO_DB_NAME'),
-        'USER': os.getenv('DJANGO_DB_USER'),
-        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD'),
-        'HOST': os.getenv('DJANGO_DB_HOST', 'localhost'),
-        'PORT': os.getenv('DJANGO_DB_PORT', '5432'),
-    }
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
 }
 
 
