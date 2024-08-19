@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'Training_Plans',
     'Community',
     'User_Management',
-    'common_templatetags',
     'widget_tweaks',
 ]
 
