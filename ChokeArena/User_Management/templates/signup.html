@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
+{% load custom_filters %}
 
 {% block title %}
 Sign Up
@@ -20,7 +20,7 @@ Sign Up
                 <!-- Name Field -->
                 <div class="mb-3">
                     <label for="id_name" class="form-label">First Name</label>
-                    {{ form.name|as_crispy_field }}
+                    {{ form.name|add_class:"form-control" }}
                     {% if form.name.errors %}
                         <div class="text-danger">
                             {{ form.name.errors }}
@@ -31,7 +31,7 @@ Sign Up
                 <!-- Surname Field -->
                 <div class="mb-3">
                     <label for="id_surname" class="form-label">Last Name</label>
-                    {{ form.surname|as_crispy_field }}
+                    {{ form.surname|add_class:"form-control" }}
                     {% if form.surname.errors %}
                         <div class="text-danger">
                             {{ form.surname.errors }}
@@ -42,7 +42,7 @@ Sign Up
                 <!-- Email Field -->
                 <div class="mb-3">
                     <label for="id_email" class="form-label">Email</label>
-                    {{ form.email|as_crispy_field }}
+                    {{ form.email|add_class:"form-control" }}
                     {% if form.email.errors %}
                         <div class="text-danger">
                             {{ form.email.errors }}
@@ -53,7 +53,7 @@ Sign Up
                 <!-- Password Field -->
                 <div class="mb-3">
                     <label for="id_password1" class="form-label">Password</label>
-                    {{ form.password1|as_crispy_field }}
+                    {{ form.password1|add_class:"form-control" }}
                     {% if form.password1.errors %}
                         <div class="text-danger">
                             {{ form.password1.errors }}
@@ -64,7 +64,7 @@ Sign Up
                 <!-- Confirm Password Field -->
                 <div class="mb-3">
                     <label for="id_password2" class="form-label">Confirm Password</label>
-                    {{ form.password2|as_crispy_field }}
+                    {{ form.password2|add_class:"form-control" }}
                     {% if form.password2.errors %}
                         <div class="text-danger">
                             {{ form.password2.errors }}
@@ -75,7 +75,7 @@ Sign Up
                 <!-- Belt Level Field -->
                 <div class="mb-3">
                     <label for="id_level" class="form-label">Belt Level</label>
-                    {{ form.level|as_crispy_field }}
+                    {{ form.level|add_class:"form-control" }}
                     {% if form.level.errors %}
                         <div class="text-danger">
                             {{ form.level.errors }}
@@ -86,7 +86,7 @@ Sign Up
                 <!-- Gender Field -->
                 <div class="mb-3">
                     <label for="id_sex" class="form-label">Gender</label>
-                    {{ form.sex|as_crispy_field }}
+                    {{ form.sex|add_class:"form-control" }}
                     {% if form.sex.errors %}
                         <div class="text-danger">
                             {{ form.sex.errors }}
