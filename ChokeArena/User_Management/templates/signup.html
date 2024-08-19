@@ -5,136 +5,162 @@ Sign Up
 {% endblock %}
 
 {% block content %}
-<section class="p-5 text-center">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card shadow-sm bg-light">
-                <div class="card-body">
-                    <h2 class="card-title text-center my-4">Sign Up</h2>
-                    <form method="post" novalidate>
-                        {% csrf_token %}
-                        
-                        <!-- Display form non-field errors -->
-                        {% if form.non_field_errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for error in form.non_field_errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
+<section class="p-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Sign Up</h2>
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- 2 column grid layout with text inputs for name and surname -->
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input type="text" id="id_name" name="name" class="form-control" value="{{ form.name.value|default_if_none:'' }}" />
+                                        <label class="form-label" for="id_name">First Name</label>
+                                        {% if form.name.errors %}
+                                            <div class="text-danger mt-2">
+                                                {% for error in form.name.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div data-mdb-input-init class="form-outline">
+                                        <input type="text" id="id_surname" name="surname" class="form-control" value="{{ form.surname.value|default_if_none:'' }}" />
+                                        <label class="form-label" for="id_surname">Last Name</label>
+                                        {% if form.surname.errors %}
+                                            <div class="text-danger mt-2">
+                                                {% for error in form.surname.errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
-                        {% endif %}
-                        
-                        <!-- Form Fields -->
-                        <div class="mb-3">
-                            <label for="id_name" class="form-label">Name</label>
-                            <input type="text" name="name" id="id_name" class="form-control form-control-sm" value="{{ form.name.value|default_if_none:'' }}" placeholder="Enter your name">
-                            {% if form.name.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.name.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_surname" class="form-label">Surname</label>
-                            <input type="text" name="surname" id="id_surname" class="form-control form-control-sm" value="{{ form.surname.value|default_if_none:'' }}" placeholder="Enter your surname">
-                            {% if form.surname.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.surname.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_email" class="form-label">Email</label>
-                            <input type="email" name="email" id="id_email" class="form-control form-control-sm" value="{{ form.email.value|default_if_none:'' }}" placeholder="Enter your email">
-                            {% if form.email.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.email.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_password1" class="form-label">Password</label>
-                            <input type="password" name="password1" id="id_password1" class="form-control form-control-sm" placeholder="Enter your password">
-                            {% if form.password1.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.password1.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_password2" class="form-label">Confirm Password</label>
-                            <input type="password" name="password2" id="id_password2" class="form-control form-control-sm" placeholder="Confirm your password">
-                            {% if form.password2.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.password2.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_level" class="form-label">Belt</label>
-                            <select name="level" id="id_level" class="form-select form-select-sm">
-                                {% for choice in form.level.field.choices %}
-                                    <option value="{{ choice.0 }}" {% if choice.0 == form.level.value %}selected{% endif %}>{{ choice.1 }}</option>
-                                {% endfor %}
-                            </select>
-                            {% if form.level.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.level.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_birth_date" class="form-label">Birth Date</label>
-                            <input type="date" name="birth_date" id="id_birth_date" class="form-control form-control-sm" value="{{ form.birth_date.value|default_if_none:'' }}">
-                            {% if form.birth_date.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.birth_date.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_sex" class="form-label">Sex</label>
-                            <select name="sex" id="id_sex" class="form-select form-select-sm">
-                                {% for choice in form.sex.field.choices %}
-                                    <option value="{{ choice.0 }}" {% if choice.0 == form.sex.value %}selected{% endif %}>{{ choice.1 }}</option>
-                                {% endfor %}
-                            </select>
-                            {% if form.sex.errors %}
-                                <div class="text-danger mt-2">
-                                    {% for error in form.sex.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-                    </form>
+                            <!-- Email input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="email" id="id_email" name="email" class="form-control" value="{{ form.email.value|default_if_none:'' }}" />
+                                <label class="form-label" for="id_email">Email Address</label>
+                                {% if form.email.errors %}
+                                    <div class="text-danger mt-2">
+                                        {% for error in form.email.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Password input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="password" id="id_password1" name="password1" class="form-control" />
+                                <label class="form-label" for="id_password1">Password</label>
+                                {% if form.password1.errors %}
+                                    <div class="text-danger mt-2">
+                                        {% for error in form.password1.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Confirm Password input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="password" id="id_password2" name="password2" class="form-control" />
+                                <label class="form-label" for="id_password2">Confirm Password</label>
+                                {% if form.password2.errors %}
+                                    <div class="text-danger mt-2">
+                                        {% for error in form.password2.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Belt input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <select id="id_level" name="level" class="form-select">
+                                    {% for choice in form.level.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if choice.0 == form.level.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label class="form-label" for="id_level">Belt</label>
+                                {% if form.level.errors %}
+                                    <div class="text-danger mt-2">
+                                        {% for error in form.level.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Birth Date input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="date" id="id_birth_date" name="birth_date" class="form-control" value="{{ form.birth_date.value|default_if_none:'' }}" />
+                                <label class="form-label" for="id_birth_date">Birth Date</label>
+                                {% if form.birth_date.errors %}
+                                    <div class="text-danger mt-2">
+                                        {% for error in form.birth_date.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Sex input -->
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <select id="id_sex" name="sex" class="form-select">
+                                    {% for choice in form.sex.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if choice.0 == form.sex.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label class="form-label" for="id_sex">Sex</label>
+                                {% if form.sex.errors %}
+                                    <div class="text-danger mt-2">
+                                        {% for error in form.sex.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Submit button -->
+                            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>or sign up with:</p>
+                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+
+                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+
+                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+
+                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 {% endblock %}
+
 
 
