@@ -88,10 +88,11 @@ Sign Up
                             <div class="mb-4">
                                 <label class="visually-hidden" for="id_level">Belt</label>
                                 <select id="id_level" name="level" data-mdb-select-init class="select form-select">
-                                    {% for choice in form.level.field.choices %}
-                                        <option value="{{ choice.0 }}" {% if choice.0 == form.level.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% for value, label in form.level.field.choices %}
+                                        <option value="{{ value }}" {% if value == form.level.value %}selected{% endif %}>{{ label }}</option>
                                     {% endfor %}
                                 </select>
+                                <label class="form-label" for="id_level">Belt</label>
                                 {% if form.level.errors %}
                                     <div class="text-danger mt-2">
                                         {% for error in form.level.errors %}
@@ -118,10 +119,11 @@ Sign Up
                             <div class="mb-4">
                                 <label class="visually-hidden" for="id_sex">Sex</label>
                                 <select id="id_sex" name="sex" data-mdb-select-init class="select form-select">
-                                    {% for choice in form.sex.field.choices %}
-                                        <option value="{{ choice.0 }}" {% if choice.0 == form.sex.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% for value, label in form.sex.field.choices %}
+                                        <option value="{{ value }}" {% if value == form.sex.value %}selected{% endif %}>{{ label }}</option>
                                     {% endfor %}
                                 </select>
+                                <label class="form-label" for="id_sex">Sex</label>
                                 {% if form.sex.errors %}
                                     <div class="text-danger mt-2">
                                         {% for error in form.sex.errors %}
@@ -146,7 +148,5 @@ Sign Up
     </div>
 </section>
 {% endblock %}
-
-
 
 
