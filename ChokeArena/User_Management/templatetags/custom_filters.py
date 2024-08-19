@@ -1,10 +1,13 @@
 from django import template
-from django.forms import BoundField
 
 register = template.Library()
 
-@register.filter(name='add_class')
+@register.filter
 def add_class(field, css_class):
-    if isinstance(field, BoundField):
-        return field.as_widget(attrs={'class': css_class})
-    return field  
+    """Ajoute une classe CSS à un champ de formulaire."""
+    if not field.field.widget.attrs:
+        field.field.widget.attrs = {}
+    current_classes = field.field.widget.attrs.get('class', '')
+    new_classes = f'{current_classes} {css_class}'.strip()
+    field.field.widget.attrs['class'] = new_classes
+    return field
