@@ -1,8 +1,11 @@
 from datetime import date
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, get_user_model
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from Techniques_Library.models import Technique
 from Training_Plans.models import TrainingPlan
+from django.contrib.auth import get_user_model
+
+
 
 User = get_user_model()
 
