@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm
+from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm,get_user_model
 from .models import CustomUser
 from Techniques_Library.models import Technique
 from Training_Plans.models import TrainingPlan
+
+User = get_user_model()
 
 def login(request):
     if request.method == 'POST':

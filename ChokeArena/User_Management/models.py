@@ -1,8 +1,10 @@
 from datetime import date
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, get_user_model
 from Techniques_Library.models import Technique
 from Training_Plans.models import TrainingPlan
+
+User = get_user_model()
 
 class CustomUserManager(BaseUserManager):
     """
