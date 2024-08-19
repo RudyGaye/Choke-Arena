@@ -1,106 +1,114 @@
 {% extends 'base.html' %}
 
-{% load custom_filters %}
-
 {% block title %}
 Sign Up
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center">Sign Up</h2>
-    <p class="text-center">Create your account to access exclusive content.</p>
-    
+{% load custom_filters %}
+<section class="p-5 text-center pt-5 mt-5">
     <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-
-                <!-- First Name Field -->
-                <div class="mb-3">
-                    <label for="id_name" class="form-label">First Name</label>
-                    {{ form.name|add_class:"form-control" }}
-                    {% if form.name.errors %}
-                        <div class="text-danger">
-                            {{ form.name.errors }}
+        <div class="col-md-6">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <h2 class="card-title text-center my-4">Sign Up</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Display form non-field errors -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+                        
+                        <!-- Form Fields -->
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            {{ form.name|add_class:"form-control" }}
+                            {% if form.name.errors %}
+                                <div class="text-danger">
+                                    {{ form.name.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <!-- Last Name Field -->
-                <div class="mb-3">
-                    <label for="id_surname" class="form-label">Last Name</label>
-                    {{ form.surname|add_class:"form-control" }}
-                    {% if form.surname.errors %}
-                        <div class="text-danger">
-                            {{ form.surname.errors }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="surname" class="form-label">Surname</label>
+                            {{ form.surname|add_class:"form-control" }}
+                            {% if form.surname.errors %}
+                                <div class="text-danger">
+                                    {{ form.surname.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <!-- Email Field -->
-                <div class="mb-3">
-                    <label for="id_email" class="form-label">Email</label>
-                    {{ form.email|add_class:"form-control" }}
-                    {% if form.email.errors %}
-                        <div class="text-danger">
-                            {{ form.email.errors }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            {{ form.email|add_class:"form-control" }}
+                            {% if form.email.errors %}
+                                <div class="text-danger">
+                                    {{ form.email.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <!-- Password Field -->
-                <div class="mb-3">
-                    <label for="id_password1" class="form-label">Password</label>
-                    {{ form.password1|add_class:"form-control" }}
-                    {% if form.password1.errors %}
-                        <div class="text-danger">
-                            {{ form.password1.errors }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="password1" class="form-label">Password</label>
+                            {{ form.password1|add_class:"form-control" }}
+                            {% if form.password1.errors %}
+                                <div class="text-danger">
+                                    {{ form.password1.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <!-- Confirm Password Field -->
-                <div class="mb-3">
-                    <label for="id_password2" class="form-label">Confirm Password</label>
-                    {{ form.password2|add_class:"form-control" }}
-                    {% if form.password2.errors %}
-                        <div class="text-danger">
-                            {{ form.password2.errors }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="password2" class="form-label">Confirm Password</label>
+                            {{ form.password2|add_class:"form-control" }}
+                            {% if form.password2.errors %}
+                                <div class="text-danger">
+                                    {{ form.password2.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <!-- Belt Level Field -->
-                <div class="mb-3">
-                    <label for="id_level" class="form-label">Belt Level</label>
-                    {{ form.level|add_class:"form-control" }}
-                    {% if form.level.errors %}
-                        <div class="text-danger">
-                            {{ form.level.errors }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="level" class="form-label">Belt</label>
+                            {{ form.level|add_class:"form-select" }}
+                            {% if form.level.errors %}
+                                <div class="text-danger">
+                                    {{ form.level.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-
-                <!-- Gender Field -->
-                <div class="mb-3">
-                    <label for="id_sex" class="form-label">Gender</label>
-                    {{ form.sex|add_class:"form-control" }}
-                    {% if form.sex.errors %}
-                        <div class="text-danger">
-                            {{ form.sex.errors }}
+                        
+                        <div class="form-group mb-3">
+                            <label for="birth_date" class="form-label">Birth Date</label>
+                            {{ form.birth_date|add_class:"form-control" }}
+                            {% if form.birth_date.errors %}
+                                <div class="text-danger">
+                                    {{ form.birth_date.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
+                        
+                        <div class="form-group mb-3">
+                            <label for="sex" class="form-label">Sex</label>
+                            {{ form.sex|add_class:"form-select" }}
+                            {% if form.sex.errors %}
+                                <div class="text-danger">
+                                    {{ form.sex.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
                 </div>
-
-                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-            </form>
-
-            <p class="text-center mt-3">
-                Already have an account? <a href="{% url 'login' %}">Login here</a>.
-            </p>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
 {% endblock %}
