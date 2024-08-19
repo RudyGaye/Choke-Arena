@@ -92,7 +92,6 @@ Sign Up
                                         <option value="{{ choice.0 }}" {% if choice.0 == form.level.value %}selected{% endif %}>{{ choice.1 }}</option>
                                     {% endfor %}
                                 </select>
-                                <label class="form-label" for="id_level">Belt</label>
                                 {% if form.level.errors %}
                                     <div class="text-danger mt-2">
                                         {% for error in form.level.errors %}
@@ -123,7 +122,6 @@ Sign Up
                                         <option value="{{ choice.0 }}" {% if choice.0 == form.sex.value %}selected{% endif %}>{{ choice.1 }}</option>
                                     {% endfor %}
                                 </select>
-                                <label class="form-label" for="id_sex">Sex</label>
                                 {% if form.sex.errors %}
                                     <div class="text-danger mt-2">
                                         {% for error in form.sex.errors %}
@@ -133,28 +131,13 @@ Sign Up
                                 {% endif %}
                             </div>
 
+
+
+
                             <!-- Submit button -->
                             <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
 
-                            <!-- Register buttons -->
-                            <div class="text-center">
-                                <p>or sign up with:</p>
-                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
-                                    <i class="fab fa-facebook-f"></i>
-                                </button>
-
-                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
-                                    <i class="fab fa-google"></i>
-                                </button>
-
-                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
-                                    <i class="fab fa-twitter"></i>
-                                </button>
-
-                                <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
+                          
                         </form>
                     </div>
                 </div>
