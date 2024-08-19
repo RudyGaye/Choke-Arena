@@ -86,13 +86,14 @@ Sign Up
 
                             <!-- Belt input -->
                             <div class="mb-4">
-                                <label class="visually-hidden" for="id_level">Belt</label>
-                                <select id="id_level" name="level" data-mdb-select-init class="select form-select">
-                                    {% for value, label in form.level.field.choices %}
-                                        <option value="{{ value }}" {% if value == form.level.value %}selected{% endif %}>{{ label }}</option>
-                                    {% endfor %}
+                                <select data-mdb-select-init id="id_level" name="level" class="form-select">
+                                    <option value="" disabled selected>Belt Level</option>
+                                    <option value="White Belt">White Belt</option>
+                                    <option value="Blue Belt">Blue Belt</option>
+                                    <option value="Purple Belt">Purple Belt</option>
+                                    <option value="Brown Belt">Brown Belt</option>
+                                    <option value="Black Belt">Black Belt</option>
                                 </select>
-                                <label class="form-label" for="id_level">Belt</label>
                                 {% if form.level.errors %}
                                     <div class="text-danger mt-2">
                                         {% for error in form.level.errors %}
@@ -117,13 +118,11 @@ Sign Up
 
                             <!-- Sex input -->
                             <div class="mb-4">
-                                <label class="visually-hidden" for="id_sex">Sex</label>
-                                <select id="id_sex" name="sex" data-mdb-select-init class="select form-select">
-                                    {% for value, label in form.sex.field.choices %}
-                                        <option value="{{ value }}" {% if value == form.sex.value %}selected{% endif %}>{{ label }}</option>
-                                    {% endfor %}
+                                <select data-mdb-select-init id="id_sex" name="sex" class="form-select">
+                                    <option value="" disabled selected>Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
-                                <label class="form-label" for="id_sex">Sex</label>
                                 {% if form.sex.errors %}
                                     <div class="text-danger mt-2">
                                         {% for error in form.sex.errors %}
@@ -133,13 +132,8 @@ Sign Up
                                 {% endif %}
                             </div>
 
-
-
-
                             <!-- Submit button -->
                             <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
-
-                          
                         </form>
                     </div>
                 </div>
