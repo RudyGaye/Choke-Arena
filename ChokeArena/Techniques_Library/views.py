@@ -40,7 +40,7 @@ def technique_detail(request, technique_id):
 def category_detail(request, id):
     category = get_object_or_404(Category, id=id)
     return render(request, 'category_detail.html', {'category': category})
-
+    
 @login_required
 def follow_technique(request, technique_id):
     if request.method == 'POST':

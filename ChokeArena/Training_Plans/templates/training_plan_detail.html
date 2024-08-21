@@ -5,22 +5,58 @@ Training Plan Detail
 {% endblock %}
 
 {% block content %}
-<section class="p-5 text-center pt-5 mt-5">
+<section class="p-5 mt-4">
     <div class="container">
-        <h2 class="my-4">{{ training_plan.name }}</h2>
-        <p>{{ training_plan.description }}</p>
-        <h3>Techniques:</h3>
-        <ul>
-            {% for technique in training_plan.techniques.all %}
-            <li>{{ technique.name }}</li>
-            {% endfor %}
-        </ul>
-        
-        <!-- Add Follow Button -->
-        <form method="post" action="{% url 'follow_training_plan' training_plan.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-success">Follow</button>
-        </form>
+        <!-- Card for the Training Plan Details -->
+        <div class="card shadow-lg border-light rounded-lg">
+            <div class="card-body">
+                <h2 class="card-title mb-4">{{ training_plan.name }}</h2>
+                <p class="card-text">{{ training_plan.description }}</p>
+
+                <h4 class="mt-4">Techniques:</h4>
+                <ul class="list-group mb-4">
+                    {% for technique in training_plan.techniques.all %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ technique.name }}
+                        <a href="{% url 'technique_detail' technique.id %}" class="btn btn-info btn-sm">View Details</a>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">No techniques available</li>
+                    {% endfor %}
+                </ul>
+
+                <h4 class="card-subtitle mb-2">Difficulty:</h4>
+                <div class="mb-3">
+                    <!-- Display stars based on difficulty level -->
+                    {% for i in stars %}
+                        {% if i <= training_plan.difficulty %}
+                            <i class="fas fa-star text-warning"></i>
+                        {% else %}
+                            <i class="far fa-star text-warning"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <!-- Follow/Unfollow Button -->
+                <div class="mt-4 text-center">
+                    {% if user.is_authenticated %}
+                        {% if user in training_plan.followers.all %}
+                        <form method="post" action="{% url 'unfollow_training_plan' training_plan.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-lg">Unfollow</button>
+                        </form>
+                        {% else %}
+                        <form method="post" action="{% url 'follow_training_plan' training_plan.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-lg">Follow</button>
+                        </form>
+                        {% endif %}
+                    {% else %}
+                        <p class="text-muted">Please <a href="{% url 'login' %}">log in</a> to follow or unfollow this training plan.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

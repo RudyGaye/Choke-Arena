@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+import re
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -15,19 +16,12 @@ class Type(models.Model):
         return self.name
 
 class Position(models.Model):
-    POSITION_CHOICES = [
-        ('Standing', 'Standing'),
-        ('Guard', 'Guard'),
-        ('Mount', 'Mount'),
-        ('Side Control', 'Side Control'),
-        ('Back Control', 'Back Control'),
-        ('Knee on Belly', 'Knee on Belly'),
-    ]
+    name = models.CharField(max_length=50)
 
-    name = models.CharField(max_length=50, unique=True, choices=POSITION_CHOICES)
 
 
 class Technique(models.Model):
+    
     name = models.CharField(max_length=200)
     description = models.TextField()
     video_url = models.URLField()
@@ -35,6 +29,19 @@ class Technique(models.Model):
     type = models.ForeignKey(Type, related_name='techniques', on_delete=models.CASCADE)
     position = models.ForeignKey(Position, related_name='techniques', on_delete=models.CASCADE)
     followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followed_techniques')
+    
+    def convert_video_url(self):
+        match = re.match(r'^https://www\.bitchute\.com/video/([^/]+)/$', self.video_url)
+        if match:
+            video_id = match.group(1)
+            return f'https://www.bitchute.com/embed/{video_id}/'
+        return self.video_url
+
+    def save(self, *args, **kwargs):
+        # Modify the video URL before saving
+        self.video_url = self.convert_video_url()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
+

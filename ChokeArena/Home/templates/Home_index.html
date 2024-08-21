@@ -22,7 +22,7 @@ Home - My Site
       {% endif %}
     </p>
     {% if user.is_authenticated %}
-      <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+      <a href="{% url 'user_followed_items' %}" class="btn btn-primary btn-lg">Go to Dashboard</a>
     {% else %}
       <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Get Started</a>
     {% endif %}
@@ -61,7 +61,7 @@ Home - My Site
             <h5 class="card-title">Community</h5>
             <p class="card-text">Join our community and share your experiences.</p>
             {% if user.is_authenticated %}
-              <a href="{% url 'community' %}" class="btn btn-outline-primary">Go to Community</a>
+              <a href="{% url 'forum_list' %}" class="btn btn-outline-primary">Go to Community</a>
             {% else %}
               <a href="{% url 'signup' %}" class="btn btn-outline-primary">Join Now</a>
             {% endif %}

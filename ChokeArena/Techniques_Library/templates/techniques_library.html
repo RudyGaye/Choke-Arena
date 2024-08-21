@@ -22,7 +22,7 @@ Technique Library
                         {% endif %}
                         <p class="card-text">Category: <a href="{% url 'category_detail' technique.category.id %}">{{ technique.category.name }}</a></p>
                         <p class="card-text">Type: {{ technique.type.name }}</p>
-                        <p class="card-text">Position: {{ technique.position }}</p>
+                        <p class="card-text">Position: {{ technique.position.name }}</p>
                     </div>
                 </div>
             </div>
@@ -31,6 +31,3 @@ Technique Library
     </div>
 </section>
 {% endblock %}
-
-
-

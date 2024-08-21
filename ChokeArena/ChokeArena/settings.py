@@ -88,7 +88,7 @@ TEMPLATES = [
 ]
 
 # WSGI application
-WSGI_APPLICATION = 'Choke_Arena.wsgi.application'
+WSGI_APPLICATION = 'ChokeArena.wsgi.application'
 
 # Database configuration
 DATABASES = {

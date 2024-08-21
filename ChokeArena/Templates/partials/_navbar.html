@@ -35,29 +35,33 @@
                 </button>
             </form>
 
-            <!-- User account dropdown -->
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(2).jpg" class="rounded-circle img-fluid" height="25" width="25">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="navbarDropdown">
-                        {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="{% url 'profil' %}">Your Account</a></li>
-                            <li><a class="dropdown-item" href="{% url 'user_followed_items' %}">My Followed Items</a></li>
-                            {% if user.is_redactor %}
-                                <li><a class="dropdown-item" href="{% url 'add_technique' %}">Add Technique</a></li>
-                                <li><a class="dropdown-item" href="{% url 'add_training_plan' %}">Add Training Plan</a></li>
-                            {% endif %}
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-                        {% else %}
-                            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
-                            <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
-                        {% endif %}
-                    </ul>
+          <!-- User account dropdown -->
+<ul class="navbar-nav mb-2 mb-lg-0">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(2).jpg" class="rounded-circle img-fluid" height="25" width="25">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="navbarDropdown">
+            {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'profil' %}">Your Account</a></li>
+                <li><a class="dropdown-item" href="{% url 'user_followed_items' %}">My Followed Items</a></li>
+                {% if user.is_redactor %}
+                    <li><a class="dropdown-item" href="{% url 'add_technique' %}">Add Technique</a></li>
+                    <li><a class="dropdown-item" href="{% url 'add_training_plan' %}">Add Training Plan</a></li>
+                {% endif %}
+                <!-- Form for logout -->
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="dropdown-item" type="submit">Log Out</button>
+                    </form>
                 </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+            {% else %}
+                <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+                <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </li>
+</ul>
 
+</nav>

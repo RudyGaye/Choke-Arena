@@ -9,13 +9,15 @@
     <div class="container">
         <!-- Heading for the type detail page -->
         <h2 class="my-4">Type: {{ type.name }}</h2>
-        <p>{{ type.description }}</p> <!-- Description of the type -->
+        {% if type.description %}
+            <p>{{ type.description }}</p> <!-- Description of the type -->
+        {% endif %}
 
         <!-- Heading for techniques within this type -->
         <h3 class="my-4">Techniques in this Type</h3>
         <div class="row">
             <!-- Loop through all techniques related to this type -->
-            {% for technique in type.technique_set.all %}
+            {% for technique in type.techniques.all %}
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm bg-light">
                     <div class="card-body">
@@ -48,3 +50,4 @@
     </div>
 </section>
 {% endblock %}
+

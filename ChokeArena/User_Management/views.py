@@ -6,9 +6,6 @@ from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 from Techniques_Library.models import Technique
 from Training_Plans.models import TrainingPlan
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
 
 def login(request):
     if request.method == 'POST':

@@ -6,73 +6,89 @@ Add Training Plan
 
 {% block content %}
 <section class="p-5 text-center pt-5 mt-5">
-    <div class="container">
-        <h2 class="my-4">Add Training Plan</h2>
-        <div class="card shadow-sm bg-light">
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    
-                    <!-- Name Field -->
-                    <div class="form-group mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        {{ form.name|add_class:"form-control" }}
-                        {% if form.name.errors %}
-                            <div class="invalid-feedback">
-                                {% for error in form.name.errors %}
-                                    <p>{{ error }}</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <h2 class="card-title text-center my-4">Add Training Plan</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Name Field -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="id_name" name="name" class="form-control" value="{{ form.name.value }}">
+                            <label class="form-label" for="id_name">Name</label>
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Description Field -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <textarea id="id_description" name="description" class="form-control" rows="4">{{ form.description.value }}</textarea>
+                            <label class="form-label" for="id_description">Description</label>
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.description.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Techniques Field -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label for="id_techniques" class="form-label">Techniques</label>
+                            <select id="id_techniques" name="techniques" class="form-select" multiple>
+                                {% for technique in form.techniques.field.queryset %}
+                                    <option value="{{ technique.pk }}" {% if technique.pk in form.techniques.value %}selected{% endif %}>
+                                        {{ technique }}
+                                    </option>
                                 {% endfor %}
+                            </select>
+                            {% if form.techniques.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.techniques.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Difficulty Field -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label for="difficultyRange" class="form-label">Difficulty</label>
+                            <input type="range" class="form-range" id="difficultyRange" name="difficulty"
+                                   min="0" max="5" step="1" value="{{ form.difficulty.value|default_if_none:0 }}">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>0</span>
+                                <span>5</span>
                             </div>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Description Field -->
-                    <div class="form-group mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        {{ form.description|add_class:"form-control" }}
-                        {% if form.description.errors %}
-                            <div class="invalid-feedback">
-                                {% for error in form.description.errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
+                            <div class="text-center">
+                                <span id="difficultyValue">{{ form.difficulty.value|default_if_none:0 }}</span>
                             </div>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Techniques Field -->
-                    <div class="form-group mb-3">
-                        <label for="techniques" class="form-label">Techniques</label>
-                        {{ form.techniques|add_class:"form-control" }}
-                        {% if form.techniques.errors %}
-                            <div class="invalid-feedback">
-                                {% for error in form.techniques.errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Difficulty Field -->
-                    <div class="form-group mb-3">
-                        <label for="difficulty" class="form-label">Difficulty</label>
-                        <input type="range" class="form-range" id="difficultyRange" name="difficulty"
-                               min="0" max="5" step="1" value="{{ form.difficulty.value|default_if_none:0 }}">
-                        <span id="difficultyValue">{{ form.difficulty.value|default_if_none:0 }}</span>
-                        {% if form.difficulty.errors %}
-                            <div class="invalid-feedback">
-                                {% for error in form.difficulty.errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Add Training Plan</button>
-                </form>
+                            {% if form.difficulty.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.difficulty.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Add Training Plan</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <script>
     // Update the displayed value when the slider is moved
@@ -80,5 +96,4 @@ Add Training Plan
         document.getElementById('difficultyValue').textContent = this.value;
     });
 </script>
-
 {% endblock %}

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}
 Training Plans
@@ -19,7 +18,7 @@ Training Plans
                         <h6 class="card-subtitle mb-2 text-muted">Difficulty:</h6>
                         <div class="mb-3">
                             <!-- Display stars based on difficulty level -->
-                            {% for i in "12345" %}
+                            {% for i in stars %}
                                 {% if i <= plan.difficulty %}
                                     <i class="fas fa-star text-warning"></i>
                                 {% else %}

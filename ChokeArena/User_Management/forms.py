@@ -1,9 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
 from django.core.validators import EmailValidator
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from .models import CustomUser
+
+
 
 class CustomUserCreationForm(UserCreationForm):
     """
@@ -62,14 +62,18 @@ class LoginForm(forms.Form):
 class CustomUserChangeForm(UserChangeForm):
     """
     Form for updating an existing user. Inherits from UserChangeForm.
-    Includes fields for name, surname, level, birth date, and sex.
+    Includes fields for name, surname, level, birth date, sex, and password.
     Widgets are customized for better integration with Bootstrap.
     """
-    
+    password = ReadOnlyPasswordHashField(label="Password", help_text=(
+        "Passwords are hashed in the database, so you cannot see this user's "
+        "password, but you can change it using <a href=\"password/\">this form</a>."
+    ))
+
     class Meta:
         model = CustomUser
-        fields = ['name', 'surname', 'level', 'birth_date', 'sex']
-        
+        fields = ['name', 'surname', 'level', 'birth_date', 'sex', 'password']
+
         # Customizing form widgets with Bootstrap classes
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -79,9 +83,8 @@ class CustomUserChangeForm(UserChangeForm):
             'sex': forms.Select(attrs={'class': 'form-select'}),
         }
 
-class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(
-        label="Email",
-        widget=forms.EmailInput(attrs={'class': 'form-control'}),
-        validators=[EmailValidator()]
-    )
+    def clean_password(self):
+        # Regardless of what the user provides, return the initial value.
+        # This is done here, rather than on the field, because the
+        # field does not have access to the initial value
+        return self.initial["password"]

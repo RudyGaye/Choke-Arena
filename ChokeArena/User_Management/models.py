@@ -3,9 +3,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from Techniques_Library.models import Technique
 from Training_Plans.models import TrainingPlan
-from django.contrib.auth import get_user_model
+from django.utils import timezone
 
-User = get_user_model()
+
+
 
 class CustomUserManager(BaseUserManager):
     """
@@ -40,6 +41,11 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
+
+         # Define any required fields that are not provided
+        if 'birth_date' not in extra_fields:
+            extra_fields['birth_date'] = timezone.now().date()  # Valeur par défaut, peut être modifié
+
 
         return self.create_user(email, password, **extra_fields)
 

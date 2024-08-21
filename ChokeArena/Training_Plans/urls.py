@@ -12,7 +12,7 @@ urlpatterns = [
     path('add/', views.add_training_plan, name='add_training_plan'),
     
     # Detail view of a specific training plan
-    path('<int:pk>/', views.training_plan_detail, name='training_plan_detail'),
+    path('<int:plan_id>', views.training_plan_detail, name='training_plan_detail'),
     
     # Follow a specific training plan
     path('<int:plan_id>/follow/', views.follow_training_plan, name='follow_training_plan'),

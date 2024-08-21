@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Followed Items
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 p-5">
+    <h2 class="text-center">Your Followed Items</h2>
+    <p class="text-center">Here you can see all the techniques and training plans you are following.</p>
+
+    <!-- Followed Techniques -->
+    <div class="row mt-4">
+        <h4 class="mb-3">Techniques</h4>
+        {% if user.library_techniques.exists %}
+            {% for technique in user.library_techniques.all %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ technique.name }}</h5>
+                            <p class="card-text">{{ technique.description|truncatewords:15 }}</p>
+                            <a href="{% url 'technique_detail' technique.id %}" class="btn btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">You are not following any techniques.</p>
+        {% endif %}
+    </div>
+
+    <!-- Followed Training Plans -->
+    <div class="row mt-5">
+        <h4 class="mb-3">Training Plans</h4>
+        {% if user.library_plans.exists %}
+            {% for plan in user.library_plans.all %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ plan.name }}</h5>
+                            <p class="card-text">{{ plan.description|truncatewords:15 }}</p>
+                            <a href="{% url 'training_plan_detail' plan.id %}" class="btn btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">You are not following any training plans.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
